@@ -1,0 +1,54 @@
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+header:after {
+  content: "";
+  display: block;
+  height: 8px;
+  background: transparent;
+  background: -moz-linear-gradient(
+                top,
+                rgba(0,0,0,0.4) 0%,
+                rgba(0,0,0,0) 100%
+              );
+  background: -webkit-linear-gradient(
+                top,
+                rgba(0,0,0,0.4) 0%,
+                rgba(0,0,0,0) 100%
+              );
+  background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.4) 0%,
+                rgba(0,0,0,0) 100%
+              );
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  font-family: 'Ubuntu', sans-serif;
+  color: var(--primary-blue);
+}
+
+
+.reddit-logo {
+  width: 40px;
+  height: auto;
+  margin-right: 5px;
+}
+
+.logo p {
+  color: black;
+  font-size: 22px;
+}
+
+.logo span {
+  color: var(--primary-blue);
+  margin-left: 2px;
+}
