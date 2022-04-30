@@ -8,7 +8,7 @@ const redditSlice = createSlice({
     posts: [],
     error: false,
     isLoading: false,
-    subreddit: 'r/popular';
+    subreddit: 'r/popular',
   },
   reducers: {
     setPosts: (state, action) => {
