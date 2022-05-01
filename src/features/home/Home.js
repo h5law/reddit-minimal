@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchPosts,
   selectFilteredPosts,
-  selectPosts
+  selectPosts,
+  searchReddit
 } from '../../store/redditSlice.js';
 
-import SearchBar from '../search/SearchBar.js';
+import FilterBar from '../search/FilterBar.js';
 import Post from '../post/Post.js';
 import PostLoading from '../post/PostLoading.js';
 
@@ -21,7 +22,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchPosts(subreddit));
-  }, [dispatch, searchTerm, subreddit]);
+  }, [dispatch, subreddit]);
 
   const renderPost = () => {
     if (isLoading) {
@@ -33,7 +34,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <SearchBar />
+      <FilterBar />
       {renderPost()}
     </div>
   );

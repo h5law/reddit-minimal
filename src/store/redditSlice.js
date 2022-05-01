@@ -64,6 +64,7 @@ export const selectError = (state) => state.reddit.error;
 export const selectLoading = (state) => state.reddit.isLoading;
 export const selectSubreddit = (state) => state.reddit.subreddit;
 export const selectSearchTerm = (state) => state.reddit.searchTerm;
+export const selectFilterTerm = (state) => state.reddit.filterTerm;
 
 export const {
   setPosts,
@@ -71,7 +72,8 @@ export const {
   getPostsSuccess,
   getPostsFailed,
   setSubreddit,
-  setSearchTerm
+  setSearchTerm,
+  setFilterTerm
 } = redditSlice.actions;
 
 export default redditSlice.reducer;
