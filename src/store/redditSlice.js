@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getSubredditPosts } from '../api/reddit.js';
+import {
+  getSubredditPosts,
+  getSearchTermPosts
+} from '../api/reddit.js';
 
 const redditSlice = createSlice({
   name: 'redditSlice',
@@ -8,7 +11,8 @@ const redditSlice = createSlice({
     posts: [],
     error: false,
     isLoading: false,
-    subreddit: 'r/popular',
+    subreddit: 'r/pics',
+    searchTerm: '',
   },
   reducers: {
     setPosts: (state, action) => {
@@ -29,6 +33,9 @@ const redditSlice = createSlice({
     setSubreddit: (state, action) => {
       state.subreddit = action.payload;
     },
+    setSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
+    },
   },
 });
 
@@ -42,17 +49,29 @@ export const fetchPosts = (subreddit) => async (dispatch) => {
   }
 };
 
-export const selectPosts = (state) => state.posts;
-export const selectError = (state) => state.error;
-export const selectLoading = (state) => state.isLoading;
-export const selectSubreddit = (state) => state.subreddit;
+export const selectFilteredPosts = (state) => {
+  if (state.reddit.searchTerm !== '') {
+    return state.reddit.posts.filter((post) => (
+      post.title.includes(state.reddit.searchTerm)
+    ));
+  } else {
+    return state.reddit.posts;
+  }
+};
+
+export const selectPosts = (state) => state.reddit.posts;
+export const selectError = (state) => state.reddit.error;
+export const selectLoading = (state) => state.reddit.isLoading;
+export const selectSubreddit = (state) => state.reddit.subreddit;
+export const selectSearchTerm = (state) => state.reddit.searchTerm;
 
 export const {
   setPosts,
   startGetPosts,
   getPostsSuccess,
   getPostsFailed,
-  setSubreddit
+  setSubreddit,
+  setSearchTerm
 } = redditSlice.actions;
 
 export default redditSlice.reducer;

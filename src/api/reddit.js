@@ -9,3 +9,14 @@ export const getSubredditPosts = async (subreddit) => {
     console.log(e.message)
   }
 };
+
+export const getSearchTermPosts = async (searchTerm) => {
+  try {
+    const query = searchTerm.replace(/ /gi, '%20');
+    const response = await fetch(`${REDDIT}search.json?q=${query}`);
+    const jsonResponse = await response.json();
+    return jsonResponse.data.children.map((post) => post.data);
+  } catch (e) {
+    console.log(e.message)
+  }
+};

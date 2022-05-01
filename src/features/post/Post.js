@@ -21,7 +21,7 @@ const Post = ({ post }) => {
     return {
       width: "100%",
       height: "100%",
-      backgroundImage: "url(" + post.thumbnail + ")",
+      backgroundImage: "url(" + (post.url !== '' ? post.url : post.thumbnail) + ")",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover"
