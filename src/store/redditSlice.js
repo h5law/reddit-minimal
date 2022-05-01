@@ -52,7 +52,7 @@ export const fetchPosts = (subreddit) => async (dispatch) => {
 export const selectFilteredPosts = (state) => {
   if (state.reddit.searchTerm !== '') {
     return state.reddit.posts.filter((post) => (
-      post.title.includes(state.reddit.searchTerm)
+      post.title.toLowerCase().includes(state.reddit.searchTerm.toLowerCase())
     ));
   } else {
     return state.reddit.posts;
@@ -72,8 +72,7 @@ export const {
   getPostsSuccess,
   getPostsFailed,
   setSubreddit,
-  setSearchTerm,
-  setFilterTerm
+  setSearchTerm
 } = redditSlice.actions;
 
 export default redditSlice.reducer;
