@@ -1,0 +1,137 @@
+.post-container {
+  display: grid;
+  grid-template-columns: 0.7fr 1.1fr 1.1fr 1.1fr;
+  grid-template-rows: 0.7fr 1.3fr 1.3fr 0.7fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "votes  title     title     title"
+    "votes  preview   preview   preview"
+    ".      preview   preview   preview"
+    ".      metadata  metadata  metadata";
+  width: 450px;
+  height: 400px;
+  box-shadow: 0px 1px 8px 4px #dcdcdc;
+  margin: 20px;
+}
+
+.post-votes-container {
+  grid-area: votes;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0px 15px 15px;
+}
+
+.upvote,
+.downvote {
+  height: 20px;
+  width: auto;
+}
+
+.post-votes-value {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.post-votes-value-loading {
+  width: 15px;
+  height: 15px;
+  margin: 10px 0;
+  background-color: var(--loading-gray);
+}
+
+.post-title,
+.post-title-loading {
+  grid-area: title;
+  display: flex;
+  margin: 25px 15px 10px 15px;
+}
+
+.post-title {
+  font-weight: 600;
+}
+
+.title-loading-box {
+  align-self: center;
+  height: 60%;
+  width: 80%;
+  background-color: var(--loading-gray);
+  border-radius: 2px;
+}
+
+.post-preview,
+.post-preview-loading {
+  grid-area: preview;
+  display: flex;
+  margin: 10px 15px 15px 15px;
+}
+
+.preview-box,
+.preview-loading-box {
+  align-self: center;
+  height: 100%;
+  width: 100%;
+  background-color: var(--loading-gray);
+  border-radius: 2px;
+}
+
+.post-metadata,
+.post-metadata-loading {
+  grid-area: metadata;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 15px 10px 15px;
+  font-size: 12px;
+}
+
+.post-metadata,
+.post-metadata-loading {
+  border-top: 1px solid var(--loading-gray);
+}
+
+.author-box span {
+  color: var(--primary-blue);
+}
+
+.author-loading-box {
+  margin-right: 15px;
+  height: 10px;
+  width: 60px;
+  background-color: var(--loading-gray);
+}
+
+.created-box {
+
+}
+
+.created-loading-box {
+  margin-left: 15px;
+  height: 10px;
+  width: 100px;
+  background-color: var(--loading-gray);
+}
+
+.comment-wrapper {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.comment {
+  height: 20px;
+  width: auto;
+}
+
+.comment-amount {
+}
+
+.comment-amount-loading {
+  margin-left: -5px;
+  margin-right: 5px;
+  height: 10px;
+  width: 50px;
+  background-color: var(--loading-gray);
+}
