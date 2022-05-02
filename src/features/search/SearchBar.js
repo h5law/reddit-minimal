@@ -1,13 +1,18 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { FaSearch } from 'react-icons/fa';
+
+import { setSearchTerm } from '../../store/redditSlice.js';
 
 import './SearchBar.css';
 
 const SearchBar = () => {
   const [term, setTerm] = useState('');
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(setSearchTerm(term));
   };
 
   return (

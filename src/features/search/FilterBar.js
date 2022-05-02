@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { FaSearch } from 'react-icons/fa';
 
-import { setSearchTerm } from '../../store/redditSlice.js';
+import { setFilterTerm } from '../../store/redditSlice.js';
 
 import './FilterBar.css';
 
@@ -13,7 +13,7 @@ const FilterBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(setSearchTerm(term));
+    dispatch(setFilterTerm(term));
     setTerm('');
   };
 

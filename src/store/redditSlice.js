@@ -10,9 +10,10 @@ const redditSlice = createSlice({
   initialState: {
     posts: [],
     error: false,
-    isLoading: false,
+    loading: false,
     subreddit: 'r/pics',
     searchTerm: '',
+    filterTerm: '',
   },
   reducers: {
     setPosts: (state, action) => {
@@ -20,21 +21,30 @@ const redditSlice = createSlice({
     },
     startGetPosts: (state) => {
       state.error = false;
-      state.isLoading = true;
+      state.loading = true;
     },
     getPostsSuccess: (state, action) => {
-      state.isLoading = false;
+      state.loading = false;
       state.posts = action.payload;
     },
     getPostsFailed: (state) => {
-      state.isLoading = false;
+      state.loading = false;
       state.error = true;
     },
     setSubreddit: (state, action) => {
       state.subreddit = action.payload;
     },
     setSearchTerm: (state, action) => {
-      state.searchTerm = action.payload;
+      if (action.payload.match(/^r\/.*$/) !== null) {
+        state.searchTerm = '';
+        state.subreddit = action.payload;
+      } else {
+        state.searchTerm = action.payload;
+      }
+      state.filterTerm = '';
+    },
+    setFilterTerm: (state, action) => {
+      state.filterTerm = action.payload;
     },
   },
 });
@@ -49,10 +59,21 @@ export const fetchPosts = (subreddit) => async (dispatch) => {
   }
 };
 
+export const searchReddit = (searchTerm) => async (dispatch) => {
+  try {
+    dispatch(startGetPosts());
+    const posts = await getSearchTermPosts(searchTerm);
+    dispatch(getPostsSuccess(posts));
+  } catch (e) {
+    dispatch(getPostsFailed());
+  }
+};
+
 export const selectFilteredPosts = (state) => {
-  if (state.reddit.searchTerm !== '') {
+  if (state.reddit.error) return [];
+  if (state.reddit.filterTerm !== '') {
     return state.reddit.posts.filter((post) => (
-      post.title.toLowerCase().includes(state.reddit.searchTerm.toLowerCase())
+      post.title.toLowerCase().includes(state.reddit.filterTerm.toLowerCase())
     ));
   } else {
     return state.reddit.posts;
@@ -61,7 +82,7 @@ export const selectFilteredPosts = (state) => {
 
 export const selectPosts = (state) => state.reddit.posts;
 export const selectError = (state) => state.reddit.error;
-export const selectLoading = (state) => state.reddit.isLoading;
+export const selectLoading = (state) => state.reddit.loading;
 export const selectSubreddit = (state) => state.reddit.subreddit;
 export const selectSearchTerm = (state) => state.reddit.searchTerm;
 export const selectFilterTerm = (state) => state.reddit.filterTerm;
@@ -72,7 +93,8 @@ export const {
   getPostsSuccess,
   getPostsFailed,
   setSubreddit,
-  setSearchTerm
+  setSearchTerm,
+  setFilterTerm
 } = redditSlice.actions;
 
 export default redditSlice.reducer;

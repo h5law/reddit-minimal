@@ -9,6 +9,7 @@ import {
 } from '../../store/redditSlice.js';
 
 import FilterBar from '../search/FilterBar.js';
+import ErrorPage from '../../components/error/ErrorPage.js';
 import Post from '../post/Post.js';
 import PostLoading from '../post/PostLoading.js';
 
@@ -16,17 +17,23 @@ import './Home.css';
 
 const Home = () => {
   const reddit = useSelector((state) => state.reddit);
-  const { posts, error, isLoading, subreddit, searchTerm} = reddit;
+  const { posts, error, loading, subreddit, searchTerm, filterTerm } = reddit;
   const dispatch = useDispatch();
   const filteredPosts = useSelector(selectFilteredPosts);
 
   useEffect(() => {
-    dispatch(fetchPosts(subreddit));
-  }, [dispatch, subreddit]);
+    if (searchTerm === '') {
+      dispatch(fetchPosts(subreddit));
+    } else {
+      dispatch(searchReddit(searchTerm));
+    }
+  }, [dispatch, searchTerm, subreddit]);
 
   const renderPost = () => {
-    if (isLoading) {
+    if (loading) {
       return <PostLoading />;
+    } else if (error) {
+      return <ErrorPage resource={subreddit} />;
     } else {
       return filteredPosts.map(post => <Post post={post} key={post.id} />);
     }

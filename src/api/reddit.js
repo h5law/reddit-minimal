@@ -6,7 +6,9 @@ export const getSubredditPosts = async (subreddit) => {
     const jsonResponse = await response.json();
     return jsonResponse.data.children.map((post) => post.data);
   } catch (e) {
-    console.log(e.message)
+    console.log(e.message);
+    // throw so redditSlice can catch
+    throw(e);
   }
 };
 
@@ -17,6 +19,8 @@ export const getSearchTermPosts = async (searchTerm) => {
     const jsonResponse = await response.json();
     return jsonResponse.data.children.map((post) => post.data);
   } catch (e) {
-    console.log(e.message)
+    console.log(e.message);
+    // throw so redditSlice can catch
+    throw(e);
   }
 };
