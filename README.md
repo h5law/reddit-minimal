@@ -1,6 +1,16 @@
 # Reddit Minimal
 
-This is a minimal reddit client, created using React and Redux.
+This is a minimal reddit client, created using React and Redux. It uses the
+reddit JSON API to fetch posts and allows for the search of reddit as a whole,
+changing subreddit (by searching 'r/[subreddit]') and filtering posts by term.
+
+## TODO
+
+ - Add detailed view for individual posts (react-router-dom)
+ - Add functionality to view comments
+ - Add loading animations to skeleton post (react-loading-skeleton)
+ - Improve UI design
+ - Make thumbnails fit properly and add detail to posts without images
 
 ## Dependencies
 
