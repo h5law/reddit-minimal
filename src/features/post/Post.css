@@ -25,6 +25,12 @@
   color: var(--text-gray);
 }
 
+.arrow-button {
+  border: none;
+  background: transparent;
+  color: var(--text-gray);
+}
+
 .upvote,
 .downvote {
   height: 20px;

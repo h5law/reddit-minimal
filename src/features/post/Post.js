@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import {
   TiArrowUpOutline,
   TiArrowUpThick,
@@ -12,6 +14,8 @@ import timeDifference from '../../utils/timeDifference.js';
 import './Post.css';
 
 const Post = ({ post }) => {
+  const [vote, setVote] = useState('');
+
   const calculateAge = () => {
     const current = new Date().getTime();
     const previous = new Date(post.created_utc).getTime() * 1000;
@@ -29,14 +33,40 @@ const Post = ({ post }) => {
     };
   };
 
+  const handleVote = (e) => {
+    if (vote === e.currentTarget.value) {
+      setVote('');
+    } else {
+      setVote(e.currentTarget.value)
+    }
+  };
+
   return (
     <article className="post-container" key={post.id}>
       <div className="post-votes-container">
-        <TiArrowUpOutline className="upvote" />
+        <button
+          className="arrow-button"
+          value="up"
+          onClick={handleVote}
+        >
+          {vote === "up"
+            ? <TiArrowUpThick className="upvote" />
+            : <TiArrowUpOutline className="upvote" />
+          }
+        </button>
         <div className="post-votes-value">
           {normaliseNumber(post.ups)}
         </div>
-        <TiArrowDownOutline className="downvote" />
+        <button
+          className="arrow-button"
+          value="down"
+          onClick={handleVote}
+        >
+          {vote === "down"
+            ? <TiArrowDownThick className="downvote" />
+            : <TiArrowDownOutline className="downvote" />
+          }
+        </button>
       </div>
       <div className="post-title">
         {post.title}
