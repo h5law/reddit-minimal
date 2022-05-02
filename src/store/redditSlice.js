@@ -38,6 +38,9 @@ const redditSlice = createSlice({
       if (action.payload.match(/^r\/.*$/) !== null) {
         state.searchTerm = '';
         state.subreddit = action.payload;
+      } else if (action.payload === '') {
+        state.searchTerm = '';
+        state.subreddit = 'r/pics';
       } else {
         state.searchTerm = action.payload;
       }
