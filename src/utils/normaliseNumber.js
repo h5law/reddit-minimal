@@ -1,8 +1,8 @@
 const normaliseNumber = (number) => {
   if (number > 1000) {
-    const rounded = Number.parseFloat(number/1000).toFixed(1);
+    const rounded = Number.parseFloat(number / 1000).toFixed(1);
     if (String(rounded).endsWith('0')) {
-      return String(rounded).split('.') + "k";
+      return String(rounded).split('.')[0] + "k";
     }
     return rounded + "k";
   }
