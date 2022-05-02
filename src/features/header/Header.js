@@ -1,4 +1,7 @@
 import { FaReddit } from 'react-icons/fa';
+
+import SearchBar from '../search/SearchBar.js';
+
 import './Header.css';
 
 const Header = () => {
@@ -6,7 +9,10 @@ const Header = () => {
     <header>
       <div className="logo">
         <FaReddit className="reddit-logo" />
-        <p>Reddit<span>Minimal</span></p>
+        <p>Reddit<span className="primary-blue">Minimal</span></p>
+      </div>
+      <div className="search-wrapper">
+        <SearchBar />
       </div>
     </header>
   );

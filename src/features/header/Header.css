@@ -1,6 +1,5 @@
 header {
   display: flex;
-  justify-content: center;
   align-items: center;
   width: 100%;
 }
@@ -28,14 +27,13 @@ header:after {
 }
 
 .logo {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   padding: 15px;
   font-family: 'Ubuntu', sans-serif;
   color: var(--primary-blue);
 }
-
 
 .reddit-logo {
   width: 40px;
@@ -44,11 +42,18 @@ header:after {
 }
 
 .logo p {
+  display: inline-block;
   color: black;
   font-size: 22px;
 }
 
-.logo span {
+.primary-blue {
+  display: inline-block;
   color: var(--primary-blue);
   margin-left: 2px;
+}
+
+.search-wrapper {
+  float: right;
+  padding: 22px;
 }
