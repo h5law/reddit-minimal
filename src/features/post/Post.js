@@ -56,7 +56,7 @@ const Post = ({ post }) => {
         <div className="comment-wrapper">
           <TiMessage className="comment" />
           <div className="comment-amount">
-            {post.num_comments}
+            {normaliseNumber(post.num_comments)}
           </div>
         </div>
       </div>

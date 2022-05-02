@@ -3,6 +3,7 @@
 :root {
   --primary-blue: #3ba8ce;
   --loading-gray: #dcdcdc;
+  --text-gray: #717171;
 }
 
 *, *:before, *:after {
