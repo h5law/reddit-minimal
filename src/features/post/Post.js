@@ -6,6 +6,7 @@ import {
   TiMessage,
 } from 'react-icons/ti';
 
+import normaliseNumber from '../../utils/normaliseNumber.js';
 import timeDifference from '../../utils/timeDifference.js';
 
 import './Post.css';
@@ -33,7 +34,7 @@ const Post = ({ post }) => {
       <div className="post-votes-container">
         <TiArrowUpOutline className="upvote" />
         <div className="post-votes-value">
-          {post.ups}
+          {normaliseNumber(post.ups)}
         </div>
         <TiArrowDownOutline className="downvote" />
       </div>
