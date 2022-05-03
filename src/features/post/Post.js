@@ -22,15 +22,39 @@ const Post = ({ post }) => {
     return timeDifference(current, previous);
   };
 
-  const setBackgroundImage = () => {
-    return {
+  const renderImage = () => {
+    const isPreviewImage = (post.url.endsWith('.jpg') || post.url.endsWith('.gif'));
+    const thumbnailFallback = (post.thumbnail.endsWith('.jpg') ? post.thumbnail : false);
+
+    if (!isPreviewImage && !thumbnailFallback) {
+      return <div className="preview-loading-box"></div>;
+    }
+
+    let previewStyle = {
       width: "100%",
       height: "100%",
-      backgroundImage: "url(" + (post.url !== '' ? post.url : post.thumbnail) + ")",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover"
     };
+
+    if (isPreviewImage) {
+      previewStyle = {
+        ...previewStyle,
+        backgroundImage: "url(" + (post.url) + ")",
+      };
+    } else if (thumbnailFallback) {
+      previewStyle = {
+        ...previewStyle,
+        backgroundImage: "url(" + (post.thumbnail) + ")",
+      };
+    }
+
+    return (
+      <div className="post-preview-box"
+           style={previewStyle}>
+      </div>
+    );
   };
 
   const handleVote = (e) => {
@@ -72,9 +96,7 @@ const Post = ({ post }) => {
         {post.title}
       </div>
       <div className="post-preview">
-        <div className="post-preview-box"
-             style={setBackgroundImage()}
-        ></div>
+        {renderImage()}
       </div>
       <div className="post-metadata">
         <div className="author-box">
