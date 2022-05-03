@@ -10,7 +10,7 @@ changing subreddit (by searching 'r/[subreddit]') and filtering posts by term.
  - Add functionality to view comments
  - Add loading animations to skeleton post (react-loading-skeleton)
  - Improve UI design
- - Make thumbnails fit properly and add detail to posts without images
+ - Make thumbnails fit properly ~~and add detail to posts without images~~
  - Make site work across mobile and range of browsers
 
 ## Dependencies
