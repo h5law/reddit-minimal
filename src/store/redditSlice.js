@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import {
   getSubredditPosts,
@@ -19,18 +19,6 @@ const redditSlice = createSlice({
     setPosts: (state, action) => {
       state.posts = action.payload;
     },
-    startGetPosts: (state) => {
-      state.error = false;
-      state.loading = true;
-    },
-    getPostsSuccess: (state, action) => {
-      state.loading = false;
-      state.posts = action.payload;
-    },
-    getPostsFailed: (state) => {
-      state.loading = false;
-      state.error = true;
-    },
     setSubreddit: (state, action) => {
       state.subreddit = action.payload;
     },
@@ -50,27 +38,51 @@ const redditSlice = createSlice({
       state.filterTerm = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(fetchPosts.pending, (state) => {
+      state.error = false;
+      state.loading = true;
+    });
+    builder.addCase(fetchPosts.fulfilled, (state, action) => {
+      state.error = false;
+      state.loading = false;
+      state.posts = action.payload;
+    });
+    builder.addCase(fetchPosts.rejected, (state) => {
+      state.error = true;
+      state.loading = false;
+    });
+    builder.addCase(searchReddit.pending, (state) => {
+      state.error = false;
+      state.loading = true;
+    });
+    builder.addCase(searchReddit.fulfilled, (state, action) => {
+      state.error = false;
+      state.loading = false;
+      state.posts = action.payload;
+    });
+    builder.addCase(searchReddit.rejected, (state) => {
+      state.error = true;
+      state.loading = false;
+    });
+  },
 });
 
-export const fetchPosts = (subreddit) => async (dispatch) => {
-  try {
-    dispatch(startGetPosts());
+export const fetchPosts = createAsyncThunk(
+  'redditSlice/fetchPosts',
+  async (subreddit, thunkAPI) => {
     const posts = await getSubredditPosts(subreddit);
-    dispatch(getPostsSuccess(posts));
-  } catch (e) {
-    dispatch(getPostsFailed());
+    return posts;
   }
-};
+);
 
-export const searchReddit = (searchTerm) => async (dispatch) => {
-  try {
-    dispatch(startGetPosts());
+export const searchReddit = createAsyncThunk(
+  'redditSlice/searchReddit',
+  async (searchTerm, thunkAPI) => {
     const posts = await getSearchTermPosts(searchTerm);
-    dispatch(getPostsSuccess(posts));
-  } catch (e) {
-    dispatch(getPostsFailed());
+    return posts;
   }
-};
+);
 
 export const selectFilteredPosts = (state) => {
   if (state.reddit.error) return [];
