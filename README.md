@@ -26,7 +26,7 @@ See `package-lock.json` for more details
 
 To install and run this app locally simply clone the repo:
 ```
-$ git clone https://github.com/h5law/reddit-minimal
+$ git clone https://github.com/h5law/reddit-minimal.git
 ```
 
 Then run:
