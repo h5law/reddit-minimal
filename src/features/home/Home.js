@@ -45,7 +45,7 @@ const Home = () => {
     } else {
       if (filterTerm !== '') {
         setPosts(posts.filter((post) =>
-          post.title.toLowerCase().includes(filterTerm)));
+          post.title.toLowerCase().includes(filterTerm.toLowerCase())));
       } else {
         setPosts(srData);
         setLoading(srIsLoading);
