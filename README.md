@@ -21,6 +21,7 @@ See `package-lock.json` for more details
  - react-dom: ^18.0.0
  - react-redux: ^8.0.1
  - react-icons: ^4.3.1
+ - react-router-dom: ^6.3.0
 
 ## Install
 
