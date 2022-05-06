@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
   TiArrowUpOutline,
@@ -14,6 +15,7 @@ import timeDifference from '../../utils/timeDifference.js';
 import './Post.css';
 
 const Post = ({ post }) => {
+  const navigate = useNavigate();
   const [vote, setVote] = useState('');
 
   const calculateAge = () => {
@@ -92,7 +94,8 @@ const Post = ({ post }) => {
           }
         </button>
       </div>
-      <div className="post-title">
+      <div className="post-title"
+           onClick={() => navigate(post.permalink)}>
         {post.title}
       </div>
       <div className="post-preview">
