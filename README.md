@@ -6,7 +6,7 @@ changing subreddit (by searching 'r/[subreddit]') and filtering posts by term.
 
 ## TODO
 
- - Add detailed view for individual posts (react-router-dom)
+ - ~~Add detailed view for individual posts (react-router-dom)~~
  - Add functionality to view comments
  - Add loading animations to skeleton post (react-loading-skeleton)
  - Improve UI design
