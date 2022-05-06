@@ -9,7 +9,7 @@ import './SearchBar.css';
 const SearchBar = () => {
   const [term, setTerm] = useState('');
   const [width, setWidth] = useState('34px');
-  const [color, setColor] = useState('black');
+  const [color, setColor] = useState('white');
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
