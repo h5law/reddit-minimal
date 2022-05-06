@@ -8,11 +8,23 @@ import './SearchBar.css';
 
 const SearchBar = () => {
   const [term, setTerm] = useState('');
+  const [width, setWidth] = useState('34px');
+  const [color, setColor] = useState('black');
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(setSearchTerm(term));
+  };
+
+  const toggleInput = () => {
+    if (width === '34px') {
+      setWidth('200px');
+      setColor('black');
+    } else {
+      setWidth('34px');
+      setColor('white');
+    }
   };
 
   return (
@@ -22,13 +34,14 @@ const SearchBar = () => {
     >
       <input
         className="search-bar"
+        style={{ width: width, color: color }}
         type="text"
         value={term}
         onChange={(e) => setTerm(e.currentTarget.value)}
         placeholder="Search Reddit"
       />
       <button className="search-button">
-        <FaSearch />
+        <FaSearch onClick={toggleInput} />
       </button>
     </form>
   );
