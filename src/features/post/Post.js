@@ -108,7 +108,8 @@ const Post = ({ post }) => {
         <div className="created-box">
           {calculateAge()}
         </div>
-        <div className="comment-wrapper">
+        <div className="comment-wrapper"
+             onClick={() => navigate(post.permalink)}>
           <TiMessage className="comment" />
           <div className="comment-amount">
             {normaliseNumber(post.num_comments)}
