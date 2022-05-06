@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 
 import { setSearchTerm } from '../../store/redditSlice.js';
@@ -11,10 +12,12 @@ const SearchBar = () => {
   const [width, setWidth] = useState('34px');
   const [color, setColor] = useState('white');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(setSearchTerm(term));
+    navigate('/');
   };
 
   const toggleInput = () => {
