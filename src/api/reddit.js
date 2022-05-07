@@ -18,11 +18,11 @@ export const redditApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://www.reddit.com/' }),
   endpoints: (builder) => ({
     getSubredditPosts: builder.query({
-      query: (subreddit) => `${subreddit}.json`,
+      query: (subreddit) => `${subreddit}.json?limit=100`,
       transformResponse: (response) => mapJson(response),
     }),
     getSearchTermPosts: builder.query({
-      query: (searchTerm) => `search.json?q=${searchTerm.replace(/ /gi, '%20')}`,
+      query: (searchTerm) => `search.json?q=${searchTerm.replace(/ /gi, '%20')}&limit=100`,
       transformResponse: (response) => mapJson(response),
     }),
     getPostDetails: builder.query({
