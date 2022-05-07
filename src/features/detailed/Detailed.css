@@ -9,6 +9,7 @@
 }
 
 .detailed-post {
+  width: 100%;
   box-shadow: 0px 1px 8px 4px #dcdcdc;
 }
 
@@ -42,7 +43,74 @@
 
 .detailed-post-content {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 15px;
+}
+
+.detailed-post-content p {
+  margin-bottom: 15px;
+  padding: 15px;
+}
+
+/*
+ * LOADING SECTION
+ */
+
+.detailed-votes-value-loading {
+  margin: 10px 0;
+  width: 15px;
+  height: 15px;
+}
+
+.detailed-title-loading {
+  width: 400px;
+  height: 18px;
+}
+
+.detailed-post-content-loading {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 600px;
+  height: 500px;
+}
+
+.author-box-loading {
+  width: 80px;
+  height: 10px;
+}
+
+.created-box-loading {
+  width: 100px;
+  height: 10px;
+}
+
+.comment-box-loading {
+  width: 50px;
+  height: 10px;
+}
+
+.detailed-votes-value-loading,
+.detailed-title-loading,
+.detailed-post-content-loading,
+.author-box-loading,
+.created-box-loading,
+.comment-box-loading {
+  background-color: var(--loading-gray);
+  overflow: hidden;
+}
+
+.skeleton {
+  height: 100%;
+  background-color: var(--loading-gray);
+  transform: translate(100%);
+  animation: 2s leftToRight linear infinite;
+}
+
+.skeleton-indicator {
+  height: 100%;
+  width: 5px;
+  background-color: var(--loading-highlight);
+  box-shadow: 0 0 60px 60px var(--loading-highlight);
 }

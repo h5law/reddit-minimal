@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { useGetPostDetailsQuery } from '../../api/reddit.js';
+import DetailedLoading from './DetailedLoading.js';
 
 import {
   TiArrowUpOutline,
@@ -17,7 +18,6 @@ import timeDifference from '../../utils/timeDifference.js';
 import './Detailed.css';
 
 const Detailed = () => {
-  const navigate = useNavigate();
   const { subreddit, username, title } = useParams();
 
   /* getPostDetailsQuery API call
@@ -48,9 +48,28 @@ const Detailed = () => {
     }
   };
 
+  const isImage = (url) => {
+    if (url.endsWith('.jpg')
+     || url.endsWith('.jpeg')
+     || url.endsWith('.png')
+     || url.endsWith('.gif')) {
+      return url;
+    } else if (url.match(/^.*\.[[jpg][jpeg][png][gif]]?\?.*$/)) {
+      return url.replace(/\?.*$/, '');
+    } else {
+      return '';
+    }
+  };
+
   const displayContent = () => {
-    if (data.post.url.endsWith('.jpg') || data.post.url.endsWith('.gif')) {
-      return <img src={data.post.url} width="500px" />;
+    if (isImage(data.post.url)) {
+      return (
+        <img
+          alt={data.post.title}
+          src={data.post.url}
+          width="500px"
+        />
+      );
     } else if (data.post.media_embed.content) {
       let embedString = data.post.media_embed.content
                         .replace(/&lt;/gi, '<')
@@ -74,7 +93,7 @@ const Detailed = () => {
         />
       );
     } else {
-      return <h1>Deal with this</h1>;
+      return <h1>View external content</h1>
     }
   };
 
@@ -113,7 +132,13 @@ const Detailed = () => {
           </div>
         </div>
         <div className="detailed-post-content">
-          <a href={data.post.url} target="_blank">{displayContent()}</a>
+          { data.post.selftext && (
+            <p dangerouslySetInnerHTML={{__html: data.post.selftext}}>
+            </p>
+          )}
+          <a href={data.post.url} target="_blank" referrerPolicy="noreferrer">
+            {displayContent()}
+          </a>
         </div>
         <div className="post-metadata">
           <div className="author-box">
@@ -138,8 +163,8 @@ const Detailed = () => {
 
   return (
     <article className="detailed-wrapper">
-      { isLoading
-        ? <h1>Loading post...</h1>
+      { (isLoading)
+        ? <DetailedLoading />
         : renderDetailedPost()
       }
     </article>

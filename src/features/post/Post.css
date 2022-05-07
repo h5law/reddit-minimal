@@ -64,8 +64,8 @@
 
 .title-loading-box {
   align-self: center;
-  height: 60%;
-  width: 80%;
+  height: 18px;
+  width: 300px;
   background-color: var(--loading-gray);
   border-radius: 2px;
 }
@@ -145,4 +145,13 @@
   height: 10px;
   width: 50px;
   background-color: var(--loading-gray);
+}
+
+.post-votes-value-loading,
+.title-loading-box,
+.post-preview-loading,
+.author-loading-box,
+.created-loading-box,
+.comment-amount-loading {
+  overflow: hidden;
 }
