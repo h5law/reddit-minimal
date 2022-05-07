@@ -16,6 +16,7 @@ changing subreddit (by searching 'r/[subreddit]') and filtering posts by term.
  - Improve UI design
  - Make thumbnails fit properly ~~and add detail to posts without images~~
  - Make site work across mobile and range of browsers
+ - Make post votes consistent between changing views
 
 ## Dependencies
 
