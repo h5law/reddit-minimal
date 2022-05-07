@@ -64,7 +64,15 @@ const Home = () => {
 
   const renderPost = () => {
     if (loading) {
-      return <PostLoading />;
+      return (
+        <>
+          <PostLoading />
+          <PostLoading />
+          <PostLoading />
+          <PostLoading />
+          <PostLoading />
+        </>
+      );
     } else if (error) {
       return <ErrorPage resource={subreddit} />;
     } else {
