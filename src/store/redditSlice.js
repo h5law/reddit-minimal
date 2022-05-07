@@ -17,10 +17,11 @@ const redditSlice = createSlice({
     },
     setSearchTerm: (state, action) => {
       if (action.payload.match(/^r\/.*$/) !== null) {
+        state.showSearchResults = false;
         state.searchTerm = '';
         state.subreddit = action.payload;
-        state.showSearchResults = false;
       } else if (action.payload === '') {
+        state.showSearchResults = false;
         state.searchTerm = '';
         state.subreddit = 'r/pics';
       } else {
