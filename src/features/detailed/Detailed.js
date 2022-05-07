@@ -113,7 +113,7 @@ const Detailed = () => {
           </div>
         </div>
         <div className="detailed-post-content">
-          {displayContent()}
+          <a href={data.post.url} target="_blank">{displayContent()}</a>
         </div>
         <div className="post-metadata">
           <div className="author-box">
@@ -129,8 +129,8 @@ const Detailed = () => {
             </div>
           </div>
         </div>
-      </section>
-      <section className="detailed-comments">
+        <div className="detailed-comments">
+        </div>
       </section>
       </>
     );

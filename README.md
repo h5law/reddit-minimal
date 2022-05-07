@@ -9,8 +9,8 @@ changing subreddit (by searching 'r/[subreddit]') and filtering posts by term.
  - ~~Add detailed view for individual posts (react-router-dom)~~
  - Add support for all post types: ~~videos~~, ~~pictures~~, ~~gifs~~, text, reddit
    gallery...
- - Add functionality to click post content and open full-size content in new
-   tab
+ - ~~Add functionality to click post content and open full-size content in new
+   tab~~
  - Add functionality to view comments
  - Add loading animations to skeleton post (react-loading-skeleton)
  - Improve UI design
