@@ -43,9 +43,7 @@ const SearchBar = () => {
         onChange={(e) => setTerm(e.currentTarget.value)}
         placeholder="Search Reddit"
       />
-      <button className="search-button">
-        <FaSearch onClick={toggleInput} />
-      </button>
+      <FaSearch className="search-button" onClick={toggleInput} />
     </form>
   );
 };
