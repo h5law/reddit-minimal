@@ -97,6 +97,8 @@ const Detailed = () => {
           height="281"
         />
       );
+    } else if (data.post.selftext) {
+        return (<p dangerouslySetInnerHTML={{__html: data.post.selftext}}></p>);
     } else {
       return <h1>View external content</h1>
     }
@@ -137,10 +139,6 @@ const Detailed = () => {
         </div>
         <div className="detailed-post-content">
           {displayContent()}
-          { data.post.selftext && (
-            <p dangerouslySetInnerHTML={{__html: data.post.selftext}}>
-            </p>
-          ) }
         </div>
         <div className="post-metadata">
           <div className="author-box">
