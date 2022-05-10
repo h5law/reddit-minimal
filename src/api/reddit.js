@@ -6,7 +6,9 @@ const mapJson = (jsonObject) => {
 
 const extractPostDetails = (array) => {
   const postInfo = array[0].data.children[0].data;
-  const comments = array[1].data.children.map((comment) => comment.data);
+  // filter for subreddit_id to remove the count entry
+  const comments = array[1].data.children.map((comment) => comment.data)
+                   .filter(comment => comment.subreddit_id);
   return {
     post: postInfo,
     comments

@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetPostDetailsQuery } from '../../api/reddit.js';
+
+import Comment from '../comment/Comment.js';
 import DetailedLoading from './DetailedLoading.js';
+import ErrorPage from '../../components/error/ErrorPage.js';
 
 import {
   TiArrowUpOutline,
@@ -64,11 +67,13 @@ const Detailed = () => {
   const displayContent = () => {
     if (isImage(data.post.url)) {
       return (
-        <img
-          alt={data.post.title}
-          src={data.post.url}
-          width="500px"
-        />
+        <a href={data.post.url} target="_blank" referrerPolicy="noreferrer">
+          <img
+            alt={data.post.title}
+            src={data.post.url}
+            width="500px"
+          />
+        </a>
       );
     } else if (data.post.media_embed.content) {
       let embedString = data.post.media_embed.content
@@ -99,7 +104,6 @@ const Detailed = () => {
 
   const renderDetailedPost = () => {
     return (
-      <>
       <section className="detailed-post">
         <div className="detailed-top-container">
           <div className="detailed-votes">
@@ -132,20 +136,18 @@ const Detailed = () => {
           </div>
         </div>
         <div className="detailed-post-content">
+          {displayContent()}
           { data.post.selftext && (
             <p dangerouslySetInnerHTML={{__html: data.post.selftext}}>
             </p>
-          )}
-          <a href={data.post.url} target="_blank" referrerPolicy="noreferrer">
-            {displayContent()}
-          </a>
+          ) }
         </div>
         <div className="post-metadata">
           <div className="author-box">
             <p>Posted by: <span>{data.post.author}</span></p>
           </div>
           <div className="created-box">
-            {calculateAge(data.post.created)}
+            {calculateAge(data.post.created_utc)}
           </div>
           <div className="comment-wrapper">
             <TiMessage className="comment" />
@@ -154,19 +156,28 @@ const Detailed = () => {
             </div>
           </div>
         </div>
-        <div className="detailed-comments">
-        </div>
+        <ul className="detailed-comments">
+          { (data.comments.length > 0) &&
+          data.comments.map(comment => <Comment comment={comment} key={comment.id} />)
+          }
+        </ul>
       </section>
-      </>
     );
+  };
+
+  const renderPost = () => {
+    if (isLoading) {
+      return <DetailedLoading />;
+    } else if (error) {
+      return <ErrorPage resource={`'r/${subreddit}/comments/${username}/${title}'`} />;
+    } else {
+      return renderDetailedPost();
+    }
   };
 
   return (
     <article className="detailed-wrapper">
-      { (isLoading)
-        ? <DetailedLoading />
-        : renderDetailedPost()
-      }
+      {renderPost()}
     </article>
   );
 };
