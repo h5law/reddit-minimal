@@ -5,7 +5,6 @@ import {
   TiArrowUpThick,
   TiArrowDownOutline,
   TiArrowDownThick,
-  TiMessage,
 } from 'react-icons/ti';
 
 import normaliseNumber from '../../utils/normaliseNumber.js';
