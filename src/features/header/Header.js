@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { FaReddit } from 'react-icons/fa';
 
 import SearchBar from '../search/SearchBar.js';
@@ -5,9 +6,11 @@ import SearchBar from '../search/SearchBar.js';
 import './Header.css';
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <header>
-      <div className="logo">
+      <div className="logo" onClick={() => navigate('/')}>
         <FaReddit className="reddit-logo" />
         <p>Reddit<span className="primary-blue">Minimal</span></p>
       </div>

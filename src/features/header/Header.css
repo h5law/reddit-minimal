@@ -33,6 +33,7 @@ header:after {
   padding: 15px;
   font-family: 'Ubuntu', sans-serif;
   color: var(--primary-blue);
+  cursor: pointer;
 }
 
 .reddit-logo {
