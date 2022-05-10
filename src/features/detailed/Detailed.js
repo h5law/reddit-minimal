@@ -67,7 +67,7 @@ const Detailed = () => {
   const displayContent = () => {
     if (isImage(data.post.url)) {
       return (
-        <a href={data.post.url} target="_blank" referrerPolicy="noreferrer">
+        <a href={data.post.url} target="_blank" rel="noreferrer">
           <img
             alt={data.post.title}
             src={data.post.url}
