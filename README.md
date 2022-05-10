@@ -12,7 +12,7 @@ changing subreddit (by searching 'r/[subreddit]') and filtering posts by term.
  - ~~Add functionality to click post content and open full-size content in new
    tab~~
  - ~~Add functionality to view comments~~
- - Enable markdown to render in comments
+ - Enable markdown to render in comments and posts
  - Show comment children
  - ~~Add loading animations to skeleton post (react-loading-skeleton)~~
  - Improve UI design
