@@ -11,7 +11,9 @@ changing subreddit (by searching 'r/[subreddit]') and filtering posts by term.
    gallery...
  - ~~Add functionality to click post content and open full-size content in new
    tab~~
- - Add functionality to view comments
+ - ~~Add functionality to view comments~~
+ - Enable markdown to render in comments
+ - Show comment children
  - ~~Add loading animations to skeleton post (react-loading-skeleton)~~
  - Improve UI design
  - Make thumbnails fit properly ~~and add detail to posts without images~~
