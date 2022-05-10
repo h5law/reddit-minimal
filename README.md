@@ -3,6 +3,9 @@
 This is a minimal reddit client, created using React and Redux. It uses the
 reddit JSON API to fetch posts and allows for the search of reddit as a whole,
 changing subreddit (by searching 'r/[subreddit]') and filtering posts by term.
+You can also click on posts to see their detailed view with comments.
+
+Check out the live site [here](https://jolly-otter-32816e.netlify.app/)
 
 ## TODO
 
