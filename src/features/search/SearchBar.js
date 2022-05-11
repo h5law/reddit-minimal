@@ -39,6 +39,7 @@ const SearchBar = () => {
       onSubmit={handleSubmit}
     >
       <input
+        ref={(input) => input && input.focus()}
         className="search-bar"
         style={{ width: width, color: color, opacity: opacity }}
         type="text"
