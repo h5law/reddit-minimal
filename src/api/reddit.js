@@ -24,7 +24,7 @@ export const redditApi = createApi({
       transformResponse: (response) => mapJson(response),
     }),
     getSearchTermPosts: builder.query({
-      query: (searchTerm) => `search.json?q=${searchTerm.replace(/ /gi, '%20')}&limit=100`,
+      query: (searchTerm) => `search.json?q=${searchTerm}&limit=75`,
       transformResponse: (response) => mapJson(response),
     }),
     getPostDetails: builder.query({

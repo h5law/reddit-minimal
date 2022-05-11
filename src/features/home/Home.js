@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import {
   useGetSubredditPostsQuery,
   useGetSearchTermPostsQuery
 } from '../../api/reddit.js';
+import { setSubreddit } from '../../store/redditSlice.js';
 
 import FilterBar from '../search/FilterBar.js';
 import ErrorPage from '../../components/error/ErrorPage.js';
@@ -14,10 +16,13 @@ import PostLoading from '../post/PostLoading.js';
 import './Home.css';
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const { subreddit: paramSub } = useParams();
   const reddit = useSelector((state) => state.reddit);
   const {
     showSearchResults,
@@ -38,6 +43,9 @@ const Home = () => {
   } = useGetSearchTermPostsQuery(searchTerm);
 
   useEffect(() => {
+    if (paramSub) {
+      dispatch(setSubreddit(`r/${paramSub}`));
+    }
     if (showSearchResults) {
       setPosts(stData);
       setLoading(stIsLoading);
@@ -53,6 +61,8 @@ const Home = () => {
       }
     }
   }, [
+        dispatch,
+        paramSub,
         showSearchResults,
         posts,
         subreddit,

@@ -12,6 +12,7 @@ const App = () => {
         <Routes>
           <Route path="/r/:subreddit/comments/:username/:title"
                  element={<Detailed />} />
+          <Route path="/r/:subreddit" element={<Home />} />
           <Route path="/" element={<Home />} />
           <Route path="*" element="" />
         </Routes>

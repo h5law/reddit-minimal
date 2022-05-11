@@ -25,7 +25,7 @@ const redditSlice = createSlice({
         state.searchTerm = '';
         state.subreddit = 'r/pics';
       } else {
-        state.searchTerm = action.payload;
+        state.searchTerm = action.payload.replace(/ /gi, '%20');
         state.showSearchResults = true;
       }
       state.filterTerm = '';
