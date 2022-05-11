@@ -20,7 +20,7 @@ export const redditApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://www.reddit.com/' }),
   endpoints: (builder) => ({
     getSubredditPosts: builder.query({
-      query: (subreddit) => `${subreddit}.json?limit=100`,
+      query: (subreddit) => `${subreddit}.json?limit=75`,
       transformResponse: (response) => mapJson(response),
     }),
     getSearchTermPosts: builder.query({
