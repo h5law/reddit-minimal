@@ -11,6 +11,7 @@ const SearchBar = () => {
   const [term, setTerm] = useState('');
   const [width, setWidth] = useState('34px');
   const [color, setColor] = useState('white');
+  const [opacity, setOpacity] = useState('0');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -24,9 +25,11 @@ const SearchBar = () => {
     if (width === '34px') {
       setWidth('200px');
       setColor('black');
+      setOpacity('1');
     } else {
       setWidth('34px');
       setColor('white');
+      setOpacity('0');
     }
   };
 
@@ -37,7 +40,7 @@ const SearchBar = () => {
     >
       <input
         className="search-bar"
-        style={{ width: width, color: color }}
+        style={{ width: width, color: color, opacity: opacity }}
         type="text"
         value={term}
         onChange={(e) => setTerm(e.currentTarget.value)}
