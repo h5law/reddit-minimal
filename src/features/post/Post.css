@@ -58,8 +58,10 @@
 }
 
 .post-title {
+  display: inline-block;
   cursor: pointer;
   font-weight: 600;
+  word-wrap: break-word;
 }
 
 .title-loading-box {
