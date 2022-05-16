@@ -100,7 +100,11 @@ const Detailed = () => {
     } else if (data.post.selftext) {
         return (<p dangerouslySetInnerHTML={{__html: data.post.selftext}}></p>);
     } else {
-      return <h1>View external content</h1>
+      return (
+        <a href={data.post.url} target="_blank" rel="noreferrer">
+          <h1>View external content</h1>
+        </a>
+      );
     }
   };
 
