@@ -14,7 +14,6 @@ const FilterBar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(setFilterTerm(term));
-    setTerm('');
   };
 
   return (
